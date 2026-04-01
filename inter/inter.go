@@ -13,6 +13,16 @@ var FS embed.FS
 //go:embed Inter-Regular.ttf
 var Regular []byte
 
+// Bold is the Inter Bold (700) TTF data.
+//
+//go:embed Inter-Bold.ttf
+var Bold []byte
+
+// Italic is the Inter Italic (400) TTF data.
+//
+//go:embed Inter-Italic.ttf
+var Italic []byte
+
 // SemiBold is the Inter SemiBold (600) TTF data.
 //
 //go:embed Inter-SemiBold.ttf

@@ -17,3 +17,8 @@ var Regular []byte
 //
 //go:embed IBMPlexMono-Bold.ttf
 var Bold []byte
+
+// Italic is the IBM Plex Mono Italic (400) TTF data.
+//
+//go:embed IBMPlexMono-Italic.ttf
+var Italic []byte

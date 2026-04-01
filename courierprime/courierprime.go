@@ -17,3 +17,8 @@ var Regular []byte
 //
 //go:embed CourierPrime-Bold.ttf
 var Bold []byte
+
+// Italic is the Courier Prime Italic (400) TTF data.
+//
+//go:embed CourierPrime-Italic.ttf
+var Italic []byte

@@ -1,4 +1,4 @@
-package courierprime
+package roboto
 
 import (
 	"testing"
@@ -9,31 +9,19 @@ import (
 	"golang.org/x/image/font/opentype"
 )
 
-func TestRegular(t *testing.T) {
-	require.Greater(t, len(Regular), 1000)
-	assertParseable(t, Regular, "Regular")
-}
-
-func TestBold(t *testing.T) {
-	require.Greater(t, len(Bold), 1000)
-	assertParseable(t, Bold, "Bold")
-}
-
-func TestItalic(t *testing.T) {
-	require.Greater(t, len(Italic), 1000)
-	assertParseable(t, Italic, "Italic")
+func TestVariable(t *testing.T) {
+	require.Greater(t, len(Variable), 1000)
+	assertParseable(t, Variable, "Variable")
 }
 
 func TestFS(t *testing.T) {
 	entries, err := FS.ReadDir(".")
 	require.NoError(t, err)
-	assert.Len(t, entries, 3)
+	assert.Len(t, entries, 1)
 
-	for _, e := range entries {
-		data, err := FS.ReadFile(e.Name())
-		require.NoError(t, err)
-		assertParseable(t, data, e.Name())
-	}
+	data, err := FS.ReadFile(entries[0].Name())
+	require.NoError(t, err)
+	assertParseable(t, data, entries[0].Name())
 }
 
 func assertParseable(t *testing.T, data []byte, name string) {

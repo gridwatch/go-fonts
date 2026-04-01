@@ -1,4 +1,4 @@
-package courierprime
+package robotoslab
 
 import (
 	"testing"
@@ -19,15 +19,10 @@ func TestBold(t *testing.T) {
 	assertParseable(t, Bold, "Bold")
 }
 
-func TestItalic(t *testing.T) {
-	require.Greater(t, len(Italic), 1000)
-	assertParseable(t, Italic, "Italic")
-}
-
 func TestFS(t *testing.T) {
 	entries, err := FS.ReadDir(".")
 	require.NoError(t, err)
-	assert.Len(t, entries, 3)
+	assert.Len(t, entries, 2)
 
 	for _, e := range entries {
 		data, err := FS.ReadFile(e.Name())

@@ -1,4 +1,4 @@
-package courierprime
+package lato
 
 import (
 	"testing"
@@ -24,10 +24,15 @@ func TestItalic(t *testing.T) {
 	assertParseable(t, Italic, "Italic")
 }
 
+func TestBoldItalic(t *testing.T) {
+	require.Greater(t, len(BoldItalic), 1000)
+	assertParseable(t, BoldItalic, "BoldItalic")
+}
+
 func TestFS(t *testing.T) {
 	entries, err := FS.ReadDir(".")
 	require.NoError(t, err)
-	assert.Len(t, entries, 3)
+	assert.Len(t, entries, 4)
 
 	for _, e := range entries {
 		data, err := FS.ReadFile(e.Name())

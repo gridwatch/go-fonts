@@ -14,6 +14,16 @@ func TestRegular(t *testing.T) {
 	assertParseable(t, Regular, "Regular")
 }
 
+func TestBold(t *testing.T) {
+	require.Greater(t, len(Bold), 1000)
+	assertParseable(t, Bold, "Bold")
+}
+
+func TestItalic(t *testing.T) {
+	require.Greater(t, len(Italic), 1000)
+	assertParseable(t, Italic, "Italic")
+}
+
 func TestSemiBold(t *testing.T) {
 	require.Greater(t, len(SemiBold), 1000)
 	assertParseable(t, SemiBold, "SemiBold")
@@ -22,7 +32,7 @@ func TestSemiBold(t *testing.T) {
 func TestFS(t *testing.T) {
 	entries, err := FS.ReadDir(".")
 	require.NoError(t, err)
-	assert.Len(t, entries, 2)
+	assert.Len(t, entries, 4)
 
 	for _, e := range entries {
 		data, err := FS.ReadFile(e.Name())
