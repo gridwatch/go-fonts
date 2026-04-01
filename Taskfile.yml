@@ -1,0 +1,16 @@
+---
+
+version: '3'
+
+silent: true
+
+includes:
+  go:
+    taskfile: ../tooling/taskfiles/go.yml
+    flatten: true
+
+tasks:
+  lint:
+    desc: Run all linters
+    cmds:
+      - task: lint-go
