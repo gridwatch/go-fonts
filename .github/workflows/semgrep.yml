@@ -1,0 +1,13 @@
+name: SAST
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  semgrep:
+    uses: gridwatch/tooling/.github/workflows/semgrep.yml@main
