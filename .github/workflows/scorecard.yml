@@ -1,0 +1,22 @@
+name: Scorecard
+
+on:
+  branch_protection_rule:
+  schedule:
+    # Weekly, Monday 04:00 UTC — off-peak, staggered from other org cron jobs.
+    - cron: "0 4 * * 1"
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions: read-all
+
+jobs:
+  scorecard:
+    uses: gridwatch/tooling/.github/workflows/scorecard.yml@main
+    permissions:
+      security-events: write
+      id-token: write
+      contents: read
+      actions: read
+      checks: read
