@@ -20,3 +20,4 @@ jobs:
       contents: read
       actions: read
       checks: read
+    secrets: inherit
