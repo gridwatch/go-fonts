@@ -14,4 +14,4 @@ jobs:
   lint:
     uses: gridwatch/tooling/.github/workflows/go-lint.yml@main
     secrets:
-      REPO_ACCESS_TOKEN: ${{ github.token }}
+      REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
