@@ -1,0 +1,61 @@
+# GRIDWATCH git attributes — canonical policy.
+#
+# Managed centrally by Terraform in gridwatch/infrastructure-github; do not
+# edit this file by hand — edit the template instead.
+# Source: gridwatch/infrastructure-github/templates/config/gitattributes.tftpl
+#
+# Default: every text file gets LF on checkout regardless of the developer's
+# `core.autocrlf`. Linux tooling (containers, CI runners, Atlas, Terraform
+# on Linux) wants LF; pinning at the default level prevents Windows checkouts
+# from silently rewriting LF -> CRLF and breaking shell scripts inside
+# containers, Postgres init scripts mounted read-only into pgvector, etc.
+# Windows-native script extensions are explicitly overridden to CRLF below.
+
+* text=auto eol=lf
+
+# --- Windows-native scripts keep CRLF --------------------------------------
+*.ps1        text eol=crlf
+*.psm1       text eol=crlf
+*.psd1       text eol=crlf
+*.bat        text eol=crlf
+*.cmd        text eol=crlf
+
+# --- Common binary types — never normalize ---------------------------------
+*.png        binary
+*.jpg        binary
+*.jpeg       binary
+*.gif        binary
+*.webp       binary
+*.ico        binary
+*.pdf        binary
+*.zip        binary
+*.tar        binary
+*.gz         binary
+*.tgz        binary
+*.bz2        binary
+*.xz         binary
+*.7z         binary
+*.parquet    binary
+*.arrow      binary
+*.onnx       binary
+*.bin        binary
+*.so         binary
+*.dll        binary
+*.dylib      binary
+*.exe        binary
+*.woff       binary
+*.woff2      binary
+*.ttf        binary
+*.otf        binary
+
+# --- Diff hints for source-control reviewers -------------------------------
+# Render Markdown and Terraform diffs as language-aware where the host
+# supports linguist hints (GitHub does).
+*.md         linguist-detectable=true
+*.tf         linguist-detectable=true
+*.hcl        linguist-detectable=true
+
+# Mark generated / vendored content so GitHub's language stats are accurate.
+specs/**     linguist-documentation
+.specify/**  linguist-vendored
+.claude/**   linguist-vendored
