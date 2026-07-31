@@ -1,4 +1,4 @@
-package inter
+package barlowcondensed
 
 import (
 	"testing"
@@ -9,14 +9,9 @@ import (
 	"golang.org/x/image/font/opentype"
 )
 
-func TestRegular(t *testing.T) {
-	require.Greater(t, len(Regular), 1000)
-	assertParseable(t, Regular, "Regular")
-}
-
-func TestMedium(t *testing.T) {
-	require.Greater(t, len(Medium), 1000)
-	assertParseable(t, Medium, "Medium")
+func TestSemiBold(t *testing.T) {
+	require.Greater(t, len(SemiBold), 1000)
+	assertParseable(t, SemiBold, "SemiBold")
 }
 
 func TestBold(t *testing.T) {
@@ -24,20 +19,10 @@ func TestBold(t *testing.T) {
 	assertParseable(t, Bold, "Bold")
 }
 
-func TestItalic(t *testing.T) {
-	require.Greater(t, len(Italic), 1000)
-	assertParseable(t, Italic, "Italic")
-}
-
-func TestSemiBold(t *testing.T) {
-	require.Greater(t, len(SemiBold), 1000)
-	assertParseable(t, SemiBold, "SemiBold")
-}
-
 func TestFS(t *testing.T) {
 	entries, err := FS.ReadDir(".")
 	require.NoError(t, err)
-	assert.Len(t, entries, 5)
+	assert.Len(t, entries, 2)
 
 	for _, e := range entries {
 		data, err := FS.ReadFile(e.Name())

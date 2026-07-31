@@ -45,6 +45,25 @@ Always use Taskfile commands. Tests use `github.com/stretchr/testify` (`require.
 5. Add per-weight test functions (`TestRegular`, `TestBold`, etc.) or `TestVariable` for variable fonts.
 6. **Update the `assert.Len` count** in the test to match the number of TTF files in the directory.
 
+## Web consumers use woff2, not this module
+
+This module is TTF for **rasterisation** — its tests parse every file through
+`golang.org/x/image/font/opentype`, because the consumers draw text into images.
+
+A browser wants woff2, which is roughly a seventeenth of the bytes (Inter Regular:
+402 KB TTF against 23 KB woff2). So a web consumer does **not** import these packages and serve the bytes.
+`octandon` used to vendor woff2 of the same families; it now links them from
+Google Fonts instead, so there is no longer a copy to keep in step.
+
+What this module owns is which typefaces are house typefaces and what their
+licence is — not the delivery format for every consumer.
+
+**`barlowcondensed` and `jetbrainsmono` currently have no importer.** Both were
+added for `octandon` before it moved to Google Fonts. They are kept as the
+canonical statement that these are house typefaces, which is this module's stated
+job; delete them only if that job is being narrowed to "fonts something
+rasterises", in which case say so here.
+
 ## Gotchas
 
 - **File count must match** — adding a TTF without updating the `assert.Len` count fails tests. Adding a TTF without a corresponding `[]byte` var still includes it in `FS`, which also triggers the count assertion.
