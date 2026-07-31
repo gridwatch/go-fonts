@@ -1,4 +1,4 @@
-// Package inter embeds the Inter typeface (Regular, SemiBold weights).
+// Package inter embeds the Inter typeface (Regular, Medium, SemiBold, Bold, Italic weights).
 package inter
 
 import "embed"
@@ -12,6 +12,11 @@ var FS embed.FS
 //
 //go:embed Inter-Regular.ttf
 var Regular []byte
+
+// Medium is the Inter Medium (500) TTF data.
+//
+//go:embed Inter-Medium.ttf
+var Medium []byte
 
 // Bold is the Inter Bold (700) TTF data.
 //
