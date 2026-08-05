@@ -1,4 +1,6 @@
-name: Lint
+---
+
+name: golangci-lint
 
 on:
   push:
@@ -12,6 +14,6 @@ permissions:
 
 jobs:
   lint:
-    uses: gridwatch/tooling/.github/workflows/go-lint.yml@main
+    uses: gridwatch/tooling/.github/workflows/golangci-lint.yml@main
     secrets:
       REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
