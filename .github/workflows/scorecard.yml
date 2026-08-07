@@ -22,4 +22,5 @@ jobs:
       contents: read
       actions: read
       checks: read
-    secrets: inherit
+    secrets:
+      SCORECARD_TOKEN: ${{ secrets.SCORECARD_TOKEN }}
