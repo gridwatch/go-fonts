@@ -44,6 +44,12 @@ Configuration lives in `config.yml`, loaded via Viper, with `GRIDWATCH_`-prefixe
 
 Image tags are **date-based**, `vYYYYMMDD-N` — never semantic versions. **Never push `latest` to the container registry**; the `latest` tag in a local Taskfile is for local development builds only.
 
+## Module versions
+
+**A repo consumed as a Go module tags semver instead** — `v0.1.0`, not `vYYYYMMDD-N`. This is the one exception to the date-based rule, and it is not a preference: the module proxy resolves versions by semver and rejects a date-based tag outright, so `go get` cannot see one. At `v2` and above the module path takes a `/v2` suffix to match.
+
+Private modules need `GOPRIVATE=github.com/gridwatch/*` locally as well as in CI. Without it `go mod download` asks the public proxy and the checksum database for a repo neither can see, and fails rather than falling back to a direct fetch.
+
 ## GitHub Actions
 
 - Use `actions/checkout@v6` or later. Never `actions/checkout@v4`.
