@@ -18,7 +18,7 @@ permissions: read-all
 
 jobs:
   scorecard:
-    uses: gridwatch/tooling/.github/workflows/scorecard.yml@main
+    uses: gridwatch/.github/.github/workflows/scorecard.yml@main
     permissions:
       security-events: write
       id-token: write
