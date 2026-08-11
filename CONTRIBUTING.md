@@ -19,8 +19,8 @@ task test    # go test with the race detector
 task lint    # gofmt, golangci-lint, govulncheck
 ```
 
-If you do not have access to `tooling`, `go test -race ./...` covers the same
-ground as `task test` and is enough to validate most changes.
+If you do not have access to `tooling`, `go test -race ./...` is a reasonable substitute
+for `task test` and is enough to validate most changes.
 
 ## Adding or updating a typeface
 
