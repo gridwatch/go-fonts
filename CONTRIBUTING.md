@@ -11,9 +11,8 @@ dual `//go:embed` pattern and the per-package test assertions.
 
 ## Local setup
 
-Everything runs through [Task](https://taskfile.dev). The Taskfile pulls shared
-task definitions from the `tooling` repository, checked out beside this one:
-
+Most development tasks run through [Task](https://taskfile.dev). The Taskfile pulls shared
+ task definitions from the `tooling` repository, checked out beside this one:
 ```shell
 git clone https://github.com/gridwatch/tooling.git ../tooling
 task test    # go test with the race detector
