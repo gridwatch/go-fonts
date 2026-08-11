@@ -16,6 +16,6 @@ permissions:
 
 jobs:
   lint:
-    uses: gridwatch/tooling/.github/workflows/golangci-lint.yml@main
+    uses: gridwatch/.github/.github/workflows/golangci-lint.yml@main
     secrets:
       REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
