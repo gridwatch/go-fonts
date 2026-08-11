@@ -1,64 +1,117 @@
 This repository embeds third-party typefaces. Each font is subject to its own
 license as listed below. The Go source code in this repository is separate from
-the font licenses.
+the font licenses -- see LICENSE.
+
+Every family directory carries the full text of its own license next to the TTF
+files, headed by the copyright notice transcribed from that font's own `name`
+table. SIL Open Font License families ship OFL.txt; Apache License families ship
+LICENSE.txt. This file is an index of those texts, not a substitute for them --
+OFL 1.1 clause 2 requires the notice and the license to travel with the fonts.
+
+The License and Notice fields below were read out of each font's `name` table
+(name IDs 0, 13 and 14) rather than copied from a third-party summary. Verify
+against the fonts themselves, not against this file, when adding or upgrading a
+family.
+
+Barlow Condensed
+  License: SIL Open Font License 1.1
+  Notice:  Copyright 2017 The Barlow Project Authors
+  Source:  https://github.com/jpt/barlow
+  Files:   barlowcondensed/*.ttf
+  Text:    barlowcondensed/OFL.txt
 
 Courier Prime
   License: SIL Open Font License 1.1
-  URL:     https://github.com/quoteunquoteapps/CourierPrime
+  Notice:  Copyright 2015 The Courier Prime Project Authors
+  Source:  https://github.com/quoteunquoteapps/CourierPrime
   Files:   courierprime/*.ttf
-
-IBM Plex Mono
-  License: SIL Open Font License 1.1
-  URL:     https://github.com/IBM/plex
-  Files:   ibmplexmono/*.ttf
-
-Inter
-  License: SIL Open Font License 1.1
-  URL:     https://github.com/rsms/inter
-  Files:   inter/*.ttf
-
-Special Elite
-  License: Apache License 2.0
-  URL:     https://fonts.google.com/specimen/Special+Elite
-  Files:   specialelite/*.ttf
+  Text:    courierprime/OFL.txt
 
 Crimson Text
   License: SIL Open Font License 1.1
-  URL:     https://github.com/googlefonts/Crimson
+  Notice:  Copyright 2010 The Crimson Text Project Authors
+  Source:  https://github.com/googlefonts/Crimson
   Files:   crimsontext/*.ttf
+  Text:    crimsontext/OFL.txt
 
 EB Garamond
   License: SIL Open Font License 1.1
-  URL:     https://github.com/octaviopardo/EBGaramond12
+  Notice:  Copyright 2017 The EB Garamond Project Authors
+  Source:  https://github.com/octaviopardo/EBGaramond12
   Files:   ebgaramond/*.ttf
+  Text:    ebgaramond/OFL.txt
+
+IBM Plex Mono
+  License: SIL Open Font License 1.1
+  Notice:  Copyright 2017 IBM Corp. All rights reserved.
+  Source:  https://github.com/IBM/plex
+  Files:   ibmplexmono/*.ttf
+  Text:    ibmplexmono/OFL.txt
+
+Inter
+  License: SIL Open Font License 1.1
+  Notice:  Copyright (c) 2016 The Inter Project Authors
+  Source:  https://github.com/rsms/inter
+  Files:   inter/*.ttf
+  Text:    inter/OFL.txt
+
+JetBrains Mono
+  License: SIL Open Font License 1.1
+  Notice:  Copyright 2020 The JetBrains Mono Project Authors
+  Source:  https://github.com/JetBrains/JetBrainsMono
+  Files:   jetbrainsmono/*.ttf
+  Text:    jetbrainsmono/OFL.txt
 
 Lato
   License: SIL Open Font License 1.1
-  URL:     https://github.com/latofonts/lato-source
+  Notice:  Copyright (c) 2011-2015 by tyPoland Lukasz Dziedzic, with
+           Reserved Font Name "Lato"
+  Source:  https://github.com/latofonts/lato-source
   Files:   lato/*.ttf
+  Text:    lato/OFL.txt
 
 Oswald
   License: SIL Open Font License 1.1
-  URL:     https://github.com/googlefonts/OswaldFont
+  Notice:  Copyright 2016 The Oswald Project Authors
+  Source:  https://github.com/googlefonts/OswaldFont
   Files:   oswald/*.ttf
+  Text:    oswald/OFL.txt
 
 Roboto
-  License: Apache License 2.0
-  URL:     https://github.com/googlefonts/roboto-2
+  License: SIL Open Font License 1.1
+  Notice:  Copyright 2011 The Roboto Project Authors
+  Source:  https://github.com/googlefonts/roboto-classic
   Files:   roboto/*.ttf
+  Text:    roboto/OFL.txt
 
 Roboto Slab
   License: Apache License 2.0
-  URL:     https://github.com/googlefonts/robotoslab
+  Notice:  Copyright 2018 The Roboto Slab Project Authors
+  Source:  https://github.com/googlefonts/robotoslab
   Files:   robotoslab/*.ttf
+  Text:    robotoslab/LICENSE.txt
 
-DISTRIBUTION RESTRICTIONS
+Special Elite
+  License: Apache License 2.0
+  Notice:  Copyright (c) 2010 by Brian J. Bonislawsky DBA Astigmatic (AOETI).
+           All rights reserved.
+  Source:  https://fonts.google.com/specimen/Special+Elite
+  Files:   specialelite/*.ttf
+  Text:    specialelite/LICENSE.txt
 
-Fonts listed above under SIL OFL or Apache 2.0 may be freely redistributed and
-embedded in applications.
+DISTRIBUTION
 
-The full text of the SIL Open Font License 1.1 is available at:
-https://openfontlicense.org/open-font-license-official-text/
+Every family above is under the SIL Open Font License 1.1 or the Apache License
+2.0. Both permit redistribution and embedding in applications, including
+commercial ones, provided the copyright notice and the license text stay with
+the font files. That is what the per-directory OFL.txt / LICENSE.txt files are
+for; do not strip them when vendoring a package.
 
-The full text of the Apache License 2.0 is available at:
-https://www.apache.org/licenses/LICENSE-2.0
+Roboto is OFL, not Apache. Google relicensed the family, and the file embedded
+here is the post-relicense cut (Version 3.015). Roboto Slab is a separate family
+and is still Apache 2.0 -- the two are easy to conflate.
+
+Lato is distributed with the Reserved Font Name "Lato". Under OFL 1.1 clause 3 a
+modified version may not use that name. Every font in this repository is an
+unmodified upstream release, so the reservation is satisfied by leaving them
+that way. Do not re-generate, subset or re-hint these files in place.

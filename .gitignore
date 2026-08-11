@@ -1,1 +1,7 @@
+# Coverage artefacts from `task cover` (see ../tooling/taskfiles/go.yml).
 coverage.out
+coverage.html
+
+# macOS Finder metadata. Most contributors' global gitignore already covers
+# this; a public repository cannot assume that of every contributor.
+.DS_Store
