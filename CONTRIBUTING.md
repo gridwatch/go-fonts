@@ -11,16 +11,26 @@ dual `//go:embed` pattern and the per-package test assertions.
 
 ## Local setup
 
-Most development tasks run through [Task](https://taskfile.dev). The Taskfile pulls shared
- task definitions from the `tooling` repository, checked out beside this one:
+Most development tasks run through [Task](https://taskfile.dev). The Taskfile
+pulls shared task definitions from the `tooling` repository, checked out beside
+this one:
+
 ```shell
 git clone https://github.com/gridwatch/tooling.git ../tooling
-task test    # go test with the race detector
-task lint    # gofmt, golangci-lint, govulncheck
+task test    # go test -race -count=1 ./...
+task lint    # gofmt, golangci-lint against the shared config, govulncheck
 ```
 
-If you do not have access to `tooling`, `go test -race ./...` is a reasonable substitute
-for `task test` and is enough to validate most changes.
+Without access to `tooling`, run the test command directly — this is exactly
+what `task test` executes, so it is not an approximation:
+
+```shell
+go test -race -count=1 ./...
+```
+
+`task lint` has no standalone equivalent: golangci-lint reads its configuration
+from the `tooling` checkout, so a change prepared without it relies on CI to
+lint.
 
 ## Adding or updating a typeface
 
