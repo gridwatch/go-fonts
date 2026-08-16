@@ -19,3 +19,5 @@ jobs:
     uses: gridwatch/.github/.github/workflows/go-test.yml@main
     secrets:
       REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+      REPO_ACCESS_APP_ID: ${{ secrets.REPO_ACCESS_APP_ID }}
+      REPO_ACCESS_APP_PRIVATE_KEY: ${{ secrets.REPO_ACCESS_APP_PRIVATE_KEY }}
