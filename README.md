@@ -68,3 +68,28 @@ task lint
 
 See [AGENTS.md](AGENTS.md) for conventions and
 [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
+
+## Sizes
+
+Go has no partial module fetch, so `go get` retrieves every family whichever one
+you import — 9.1 MB of TTF, about 4.5 MB as the module zip. What the per-package
+split saves is binary size: only the families you actually import are embedded.
+
+| Package | Embedded |
+|---|---|
+| `lato` | 2.6 MB |
+| `ebgaramond` | 2.0 MB |
+| `inter` | 2.0 MB |
+| `roboto` | 477 KB |
+| `ibmplexmono` | 468 KB |
+| `crimsontext` | 435 KB |
+| `robotoslab` | 247 KB |
+| `courierprime` | 219 KB |
+| `barlowcondensed` | 214 KB |
+| `jetbrainsmono` | 183 KB |
+| `oswald` | 168 KB |
+| `specialelite` | 162 KB |
+| **total** | **9.1 MB** |
+
+Figures are uncompressed TTF bytes. They drift when a family is upgraded and
+nothing enforces them.
