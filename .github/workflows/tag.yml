@@ -1,0 +1,41 @@
+---
+
+# Managed by gridwatch/infrastructure-github.
+# Manual edits will be overwritten on the next `terraform apply`.
+
+name: Tag
+
+on:
+  push:
+    branches: ['main']
+    # A docs-only change has nothing for a consumer to resolve — they see Go
+    # source and go.mod, not the README. Without this every prose fix mints a
+    # version and every consumer gets a Dependabot pull request for it.
+    #
+    # `**.md`, deliberately, not `**/*.md`. GitHub's `**` "matches zero or
+    # more of any character", slashes included, so this already covers both
+    # README.md and docs/guide.md. `**/*.md` is the narrower form: it requires
+    # a literal slash, so it misses a root-level README — which is the file
+    # these repos actually change.
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE'
+
+# contents: write, not read. A reusable workflow's permissions are intersected
+# with the caller's — it can narrow them but never widen them — so declaring
+# `read` here would leave the reusable unable to create the tag however it
+# declares itself, and `gh release create` would 403 on the first merge.
+permissions:
+  contents: write
+
+# One tag job at a time per repo. Two merges landing together would otherwise
+# both read the same latest tag, compute the same next version, and the loser
+# would fail on an existing tag. Not cancel-in-progress: the second merge still
+# needs its own version, so it queues rather than being dropped.
+concurrency:
+  group: go-module-tag-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  tag:
+    uses: gridwatch/.github/.github/workflows/go-module-tag.yml@main
