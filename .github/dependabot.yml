@@ -15,5 +15,11 @@ updates:
     directory: "/"
     cooldown:
       default-days: 7
+      # Excluded from the cooldown above. The cooldown exists to let a
+      # third-party release be withdrawn before we adopt it; a first-party
+      # module has no such window — we cut the tag ourselves, and holding our
+      # own fix back for a week is delay with nothing to show for it.
+      exclude:
+        - "github.com/gridwatch/*"
     schedule:
       interval: "weekly"
