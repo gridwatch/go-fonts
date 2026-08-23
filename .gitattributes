@@ -59,3 +59,13 @@
 specs/**     linguist-documentation
 .specify/**  linguist-vendored
 .claude/**   linguist-vendored
+
+# fastlane's Ruby config is a few hundred bytes against tens of thousands of
+# lines of Swift, but Linguist reports the repository as containing Ruby on the
+# strength of it. CodeQL then adds an `Analyze (ruby)` job that fails with
+# "detected code written in Swift and GitHub Actions, but not any written in
+# Ruby" — and where Ruby is the only language detected, its self-adjusting job
+# cannot recover, because it exits when nothing analyzed successfully.
+# Detectable rather than vendored: this is config we write and review, so the
+# diffs must stay expanded.
+fastlane/**  linguist-detectable=false
