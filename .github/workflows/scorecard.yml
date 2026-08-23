@@ -19,6 +19,10 @@ permissions: read-all
 jobs:
   scorecard:
     uses: gridwatch/.github/.github/workflows/scorecard.yml@main
+    # Public repo: scorecard.dev can host the score, so publish it and earn the
+    # badge. The reusable defaults this to false for the private majority.
+    with:
+      publish_results: true
     permissions:
       security-events: write
       id-token: write
