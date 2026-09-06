@@ -39,7 +39,7 @@ Always use Taskfile commands. Tests use `github.com/stretchr/testify` (`require.
 ## Adding a Font
 
 1. Create a new package directory (lowercase, no hyphens).
-2. Add TTF files to the directory. Take every weight from the **same upstream release** — see Known problems.
+2. Add TTF files to the directory. Take every weight from the **same upstream release** — see [Known problems](#known-problems).
 3. Add the family's licence text beside them: `OFL.txt` for SIL OFL families, `LICENSE.txt` for Apache ones. Head it with the copyright notice read out of the font's own `name` table (name ID 0) — not from a specimen page.
 4. Add the family to `LICENSE-FONTS`, with the licence taken from name IDs 13/14 of the font itself.
 5. Create a `.go` file with `//go:embed` directives exposing `FS embed.FS` and named `[]byte` vars per weight.
