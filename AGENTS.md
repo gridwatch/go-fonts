@@ -10,7 +10,7 @@ Shared Go module embedding typeface TTF files. Each font family is a separate pa
 2. [Build & Test](#build--test)
 3. [Conventions](#conventions)
 4. [Adding a Font](#adding-a-font)
-5. [Gotchas](#gotchas)
+5. [Known problems](#known-problems)
 
 ---
 
@@ -39,7 +39,7 @@ Always use Taskfile commands. Tests use `github.com/stretchr/testify` (`require.
 ## Adding a Font
 
 1. Create a new package directory (lowercase, no hyphens).
-2. Add TTF files to the directory. Take every weight from the **same upstream release** — see the Gotchas.
+2. Add TTF files to the directory. Take every weight from the **same upstream release** — see Known problems.
 3. Add the family's licence text beside them: `OFL.txt` for SIL OFL families, `LICENSE.txt` for Apache ones. Head it with the copyright notice read out of the font's own `name` table (name ID 0) — not from a specimen page.
 4. Add the family to `LICENSE-FONTS`, with the licence taken from name IDs 13/14 of the font itself.
 5. Create a `.go` file with `//go:embed` directives exposing `FS embed.FS` and named `[]byte` vars per weight.
@@ -68,10 +68,10 @@ canonical statement that these are house typefaces, which is this module's state
 job; delete them only if that job is being narrowed to "fonts something
 rasterises", in which case say so here.
 
-## Gotchas
+## Known problems
 
 - **File count must match** — adding a TTF without updating the `assert.Len` count fails tests. Adding a TTF without a corresponding `[]byte` var still includes it in `FS`, which also triggers the count assertion.
 - **No shared test utility** — each package's `assertParseable()` is local. If you change the assertion pattern, update all packages.
-- **The font's own metadata is authoritative on licensing, not the specimen page.** `LICENSE-FONTS` recorded Roboto as Apache 2.0 while the embedded file's `name` table said OFL 1.1 — Google relicensed the family and the summary was never revisited. Roboto Slab genuinely is still Apache, which makes the two easy to conflate. Read name IDs 0, 13 and 14 out of the TTF before writing a licence into `LICENSE-FONTS`.
+- **The font's own metadata is authoritative on licensing, not the specimen page.** `LICENSE-FONTS` recorded Roboto as Apache 2.0 while the embedded file's `name` table said OFL 1.1 — Google relicensed the family and the summary was never revisited. Roboto Slab is still Apache, which makes the two easy to conflate. Read name IDs 0, 13 and 14 out of the TTF before writing a licence into `LICENSE-FONTS`.
 - **Keep a family's statics on one upstream cut.** `inter` shipped Bold and Italic from Google Fonts' optical-size split (family `Inter 24pt`, `git-66647c0bb`) alongside Regular/Medium/SemiBold from rsms's plain `Inter` (`git-9221beed3`) — two different designs with different metrics in one package, so `inter.Bold` did not match `inter.Regular`. Check the `name` table's family and version strings agree across every file in a directory.
 - **CI delegates to shared workflows** — the test, lint and Scorecard callers reference `gridwatch/.github/.github/workflows/`. No inline CI logic in this repo.
