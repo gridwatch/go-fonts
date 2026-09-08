@@ -12,6 +12,14 @@ on:
     - cron: "0 4 * * 1"
   push:
     branches: [main]
+    paths-ignore:
+      - '.github/CODEOWNERS'
+      - '.github/copilot-instructions.md'
+      - '.gitattributes'
+      - '.gitignore'
+      - '.markdownlint.yml'
+      - '.terraform-docs.yml'
+      - 'CLAUDE.md'
   workflow_dispatch:
 
 permissions: read-all
