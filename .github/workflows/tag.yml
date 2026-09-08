@@ -20,6 +20,9 @@ on:
     paths-ignore:
       - '**.md'
       - 'LICENSE'
+      - '.github/**'
+      - '.gitattributes'
+      - '.gitignore'
 
 # contents: write, not read. A reusable workflow's permissions are intersected
 # with the caller's — it can narrow them but never widen them — so declaring
