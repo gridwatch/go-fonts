@@ -8,6 +8,18 @@ name: golangci-lint
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - '.github/CODEOWNERS'
+      - '.github/copilot-instructions.md'
+      - '.github/dependabot.yml'
+      - '.github/workflows/**'
+      - '.gitattributes'
+      - '.gitignore'
+      - '.markdownlint.yml'
+      - '.terraform-docs.yml'
+      - 'CLAUDE.md'
+      - 'LICENSE'
+      - 'SECURITY.md'
   pull_request:
     branches: [main]
   # A run that fails at workflow load has no jobs and cannot be re-run, so
