@@ -37,9 +37,10 @@ lint.
 This is the part most likely to go wrong, so it has hard rules.
 
 - **Read the licence out of the font, not off a specimen page.** Every entry in
-  `LICENSE-FONTS` comes from the TTF's own `name` table — name ID 0 for the
-  copyright notice, 13 and 14 for the licence. Specimen pages go stale: Roboto
-  was recorded here as Apache 2.0 long after Google relicensed it to OFL.
+  `LICENSE-FONTS` comes from the font file's own `name` table — name ID 0 for
+  the copyright notice, 13 and 14 for the licence. Specimen pages go stale:
+  `Roboto` was recorded here as Apache 2.0 long after Google changed its
+  licence to OFL.
 - **Ship the licence text with the font.** Each family directory carries its own
   `OFL.txt` (SIL OFL families) or `LICENSE.txt` (Apache families), headed by that
   family's copyright notice. OFL 1.1 clause 2 requires the notice and licence to
@@ -47,7 +48,7 @@ This is the part most likely to go wrong, so it has hard rules.
 - **Take every weight from one upstream release.** Mixing cuts of the same family
   produces a package whose weights do not match each other — `inter` shipped
   Bold and Italic from Google Fonts' optical-size split alongside Regular from
-  rsms's release, and the metrics disagreed.
+  `rsms`'s release, and the metrics disagreed.
 - **Do not modify, subset or re-hint the files.** Several families carry a
   Reserved Font Name, which under OFL 1.1 clause 3 a modified version may not
   use. Unmodified upstream releases sidestep this entirely.
