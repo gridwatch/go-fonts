@@ -1,0 +1,37 @@
+---
+
+# Managed by gridwatch/infrastructure-github.
+# Manual edits will be overwritten on the next `terraform apply`.
+
+name: Vale
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '.github/CODEOWNERS'
+      - '.github/dependabot.yml'
+      - '.github/workflows/**'
+      - '.gitattributes'
+      - '.gitignore'
+      - '.markdownlint.yml'
+      - '.terraform-docs.yml'
+  pull_request:
+  # A run that fails at workflow load has no jobs and cannot be re-run, so
+  # without this the only way to retry after such a failure is a new push.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  vale:
+    uses: gridwatch/.github/.github/workflows/vale.yml@main
+    # Always passed explicitly, never left to the reusable's default — the
+    # two values drifting apart would change what gets linted with nothing
+    # in review showing it.
+    with:
+      glob: '!{_vendor,layouts,node_modules,public,vendor,.specify,specs,.claude}/**'
+    secrets:
+      REPO_ACCESS_APP_CLIENT_ID: ${{ secrets.REPO_ACCESS_APP_CLIENT_ID }}
+      REPO_ACCESS_APP_PRIVATE_KEY: ${{ secrets.REPO_ACCESS_APP_PRIVATE_KEY }}
