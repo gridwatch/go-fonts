@@ -33,7 +33,7 @@ Always use Taskfile commands. Tests use `github.com/stretchr/testify` (`require.
 - **Dual embed pattern** — each package embeds via both `//go:embed *.ttf` (on `FS embed.FS`) and per-file embeds (on named `[]byte` vars per weight). Both must stay in sync.
 - **Variable fonts export `Variable` only** — packages like `oswald` and `roboto` export a single `Variable []byte`, not per-weight vars. Consumers handle axis ranges at runtime.
 - **Per-package test isolation** — each package defines its own `assertParseable()` helper locally rather than sharing a test utility. This is intentional — packages are independent.
-- **Per-weight test functions** — multi-weight packages (e.g. lato) define individual `TestRegular()`, `TestBold()`, etc. Variable font packages use only `TestVariable()`.
+- **Per-weight test functions** — multi-weight packages (for example `lato`) define individual `TestRegular()`, `TestBold()`, etc. Variable font packages use only `TestVariable()`.
 - **File count assertion via `FS.ReadDir(".")`** — tests verify the exact number of embedded TTF files matches expectations. Catches accidental additions.
 
 ## Adding a Font
@@ -51,8 +51,9 @@ The licence files sit in the package directory but are not embedded — `FS` is 
 
 ## Web consumers use woff2, not this module
 
-This module is TTF for **rasterisation** — its tests parse every file through
-`golang.org/x/image/font/opentype`, because the consumers draw text into images.
+This module is TTF because its consumers **rasterize text into images** — its
+tests parse every file through `golang.org/x/image/font/opentype` for the same
+reason.
 
 A browser wants woff2, which is roughly a seventeenth of the bytes (Inter Regular:
 402 KB TTF against 23 KB woff2). So a web consumer does **not** import these packages and serve the bytes.
@@ -66,12 +67,20 @@ licence is — not the delivery format for every consumer.
 added for `backbrief` before it moved to Google Fonts. They are kept as the
 canonical statement that these are house typefaces, which is this module's stated
 job; delete them only if that job is being narrowed to "fonts something
-rasterises", in which case say so here.
+rasterizes," in which case say so here.
 
 ## Known problems
 
 - **File count must match** — adding a TTF without updating the `assert.Len` count fails tests. Adding a TTF without a corresponding `[]byte` var still includes it in `FS`, which also triggers the count assertion.
 - **No shared test utility** — each package's `assertParseable()` is local. If you change the assertion pattern, update all packages.
-- **The font's own metadata is authoritative on licensing, not the specimen page.** `LICENSE-FONTS` recorded Roboto as Apache 2.0 while the embedded file's `name` table said OFL 1.1 — Google relicensed the family and the summary was never revisited. Roboto Slab is still Apache, which makes the two easy to conflate. Read name IDs 0, 13 and 14 out of the TTF before writing a licence into `LICENSE-FONTS`.
-- **Keep a family's statics on one upstream cut.** `inter` shipped Bold and Italic from Google Fonts' optical-size split (family `Inter 24pt`, `git-66647c0bb`) alongside Regular/Medium/SemiBold from rsms's plain `Inter` (`git-9221beed3`) — two different designs with different metrics in one package, so `inter.Bold` did not match `inter.Regular`. Check the `name` table's family and version strings agree across every file in a directory.
+- **The font's own metadata is authoritative on licensing, not the specimen page.** `LICENSE-FONTS`
+  recorded `Roboto` as Apache 2.0 while the embedded file's `name` table said OFL 1.1 — Google
+  changed the family's licence and the summary was never revisited. `Roboto Slab` is still Apache,
+  which makes the two easy to conflate. Read name IDs 0, 13 and 14 out of the TTF before writing a
+  licence into `LICENSE-FONTS`.
+- **Keep a family's statics on one upstream cut.** `inter` shipped Bold and Italic from Google
+  Fonts' optical-size split (family `Inter 24pt`, `git-66647c0bb`) alongside Regular/Medium/SemiBold
+  from `rsms`'s plain `Inter` (`git-9221beed3`) — two different designs with different metrics in
+  one package, so `inter.Bold` did not match `inter.Regular`. Check the `name` table's family and
+  version strings agree across every file in a directory.
 - **CI delegates to shared workflows** — the test, lint and Scorecard callers reference `gridwatch/.github/.github/workflows/`. No inline CI logic in this repo.

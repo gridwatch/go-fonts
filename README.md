@@ -4,7 +4,7 @@
 
 Each family is its own package, so a consumer compiles in only the bytes it asks
 for rather than the whole set. The fonts are TTF because the consumers
-rasterise text into images; a browser wants woff2 and should not use this module.
+rasterize text into images; a browser wants woff2 and should not use this module.
 
 ## Install
 
@@ -26,18 +26,18 @@ single `Variable` and leave axis selection to the caller.
 
 | Package | Family | Exports |
 |---|---|---|
-| `barlowcondensed` | Barlow Condensed | `SemiBold`, `Bold` |
-| `courierprime` | Courier Prime | `Regular`, `Italic`, `Bold` |
-| `crimsontext` | Crimson Text | `Regular`, `Italic`, `Bold`, `BoldItalic` |
-| `ebgaramond` | EB Garamond | `Regular`, `Italic`, `Bold`, `BoldItalic` |
-| `ibmplexmono` | IBM Plex Mono | `Regular`, `Italic`, `Bold` |
-| `inter` | Inter | `Regular`, `Medium`, `SemiBold`, `Bold`, `Italic` |
-| `jetbrainsmono` | JetBrains Mono | `Variable` (wght) |
-| `lato` | Lato | `Regular`, `Italic`, `Bold`, `BoldItalic` |
-| `oswald` | Oswald | `Variable` (wght) |
-| `roboto` | Roboto | `Variable` (wdth, wght) |
-| `robotoslab` | Roboto Slab | `Regular`, `Bold` |
-| `specialelite` | Special Elite | `Regular` |
+| `barlowcondensed` | `Barlow Condensed` | `SemiBold`, `Bold` |
+| `courierprime` | `Courier Prime` | `Regular`, `Italic`, `Bold` |
+| `crimsontext` | `Crimson Text` | `Regular`, `Italic`, `Bold`, `BoldItalic` |
+| `ebgaramond` | `EB Garamond` | `Regular`, `Italic`, `Bold`, `BoldItalic` |
+| `ibmplexmono` | `IBM Plex Mono` | `Regular`, `Italic`, `Bold` |
+| `inter` | `Inter` | `Regular`, `Medium`, `SemiBold`, `Bold`, `Italic` |
+| `jetbrainsmono` | `JetBrains Mono` | `Variable` (`wght`) |
+| `lato` | `Lato` | `Regular`, `Italic`, `Bold`, `BoldItalic` |
+| `oswald` | `Oswald` | `Variable` (`wght`) |
+| `roboto` | `Roboto` | `Variable` (`wdth`, `wght`) |
+| `robotoslab` | `Roboto Slab` | `Regular`, `Bold` |
+| `specialelite` | `Special Elite` | `Regular` |
 
 Every package also exports `FS embed.FS` covering that family's TTF files.
 
@@ -55,9 +55,9 @@ Both licences permit redistribution and embedding in applications, including
 commercial ones, **provided the copyright notice and licence text stay with the
 font files**. Keep those files in place when vendoring a package.
 
-The fonts here are unmodified upstream releases. Lato carries the Reserved Font
-Name "Lato", so leave it that way — under OFL 1.1 clause 3 a modified version
-may not use the reserved name.
+The fonts here are unmodified upstream releases. `Lato` carries the Reserved
+Font Name `Lato`, so leave it that way — under OFL 1.1 clause 3 a modified
+version may not use the reserved name.
 
 ## Development
 

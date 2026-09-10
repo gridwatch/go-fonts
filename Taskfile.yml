@@ -8,9 +8,21 @@ includes:
   go:
     taskfile: ../tooling/taskfiles/go.yml
     flatten: true
+  prose:
+    taskfile: ../tooling/taskfiles/prose.yml
+    flatten: true
+  css:
+    taskfile: ../tooling/taskfiles/css.yml
+    flatten: true
+  js:
+    taskfile: ../tooling/taskfiles/js.yml
+    flatten: true
 
 tasks:
   lint:
     desc: Run all linters
     cmds:
       - task: lint-go
+      - task: lint-prose
+      - task: lint-css
+      - task: lint-js
