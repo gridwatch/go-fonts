@@ -1,0 +1,26 @@
+---
+
+# Managed by gridwatch/infrastructure-github.
+# Manual edits will be overwritten on the next `terraform apply`.
+
+name: Super-Linter
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '.github/CODEOWNERS'
+      - '.gitattributes'
+      - '.gitignore'
+      - 'LICENSE'
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  superlinter:
+    uses: gridwatch/.github/.github/workflows/superlinter-prose.yml@main
+    with:
+      copy-yamllint-config: true
+      filter-regex-exclude: '(Taskfile\.yml|tooling/|_vendor/|\.specify/|specs/|\.claude/)'
