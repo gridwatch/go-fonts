@@ -1,0 +1,23 @@
+---
+
+# Managed by gridwatch/infrastructure-github.
+# Manual edits will be overwritten on the next `terraform apply`.
+
+name: Frontend Super-Linter
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '.github/CODEOWNERS'
+      - '.gitattributes'
+      - '.gitignore'
+      - 'LICENSE'
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  superlinter:
+    uses: gridwatch/.github/.github/workflows/superlinter-frontend.yml@main
