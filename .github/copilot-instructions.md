@@ -57,6 +57,11 @@ Private modules need `GOPRIVATE=github.com/gridwatch/*` locally as well as in CI
 - Use `actions/checkout@v6` or later. Never `actions/checkout@v4`.
 - Pin every action to an exact version, with a `# see <releases URL>` comment above the pin.
 
+## Commits and pull requests
+
+- **Never attribute a change to an AI agent.** No `Co-Authored-By` line naming an assistant, no `Generated with …` footer, no session or chat link — not in a commit message, a pull request body, an issue, or a review comment.
+- The rule holds whichever tool wrote the change, including when that tool adds the line by default: strip it before committing. The diff and its review are the record.
+
 ## Documentation
 
 - Diagrams are **Mermaid** only. No ASCII box drawing.
