@@ -12,7 +12,7 @@ Everything runs through Taskfile targets — `task build`, `task test`, `task li
 
 Operational checks go through the Taskfile too (`task status`, `task health`, `task restart`) rather than bare `curl`, `lsof`, `kill` or `pkill`.
 
-Go 1.26 or later. Format with `gofmt`. `golangci-lint` uses the shared allowlist config in the sibling `tooling` repo (`tooling/golangci.yml`) and CI requires zero warnings.
+Go 1.27 or later. Format with `gofmt`. `golangci-lint` uses the shared allowlist config in the sibling `tooling` repo (`tooling/golangci.yml`) and CI requires zero warnings.
 
 ## Testing
 
