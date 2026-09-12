@@ -27,9 +27,8 @@ permissions:
 jobs:
   vale:
     uses: gridwatch/.github/.github/workflows/vale.yml@main
-    # Always passed explicitly, never left to the reusable's default — the
-    # two values drifting apart would change what gets linted with nothing
-    # in review showing it.
+    # Passed explicitly, never left to the reusable's default: drift would change
+    # what gets linted with nothing in review showing it.
     with:
       glob: '!{_vendor,layouts,node_modules,public,vendor,.specify,specs,.claude}/**'
     secrets:
