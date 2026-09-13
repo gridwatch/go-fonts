@@ -1,6 +1,6 @@
 module github.com/gridwatch/go-fonts
 
-go 1.27.0
+go 1.27.1
 
 require (
 	github.com/stretchr/testify v1.12.1
