@@ -30,7 +30,7 @@ jobs:
     # Passed explicitly, never left to the reusable's default: drift would change
     # what gets linted with nothing in review showing it.
     with:
-      glob: '!{_vendor,layouts,node_modules,public,vendor,.specify,specs,.claude}/**'
+      glob: '!{_vendor,.venv,layouts,node_modules,public,vendor,.specify,specs,.claude}/**'
     secrets:
       REPO_ACCESS_APP_CLIENT_ID: ${{ secrets.REPO_ACCESS_APP_CLIENT_ID }}
       REPO_ACCESS_APP_PRIVATE_KEY: ${{ secrets.REPO_ACCESS_APP_PRIVATE_KEY }}
