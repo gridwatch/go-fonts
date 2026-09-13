@@ -26,6 +26,15 @@ permissions:
 
 jobs:
   vale:
+    # Dependabot runs get no Actions secrets, so the reusable's App-token clone
+    # of the private tooling repository — where the config and vocabularies
+    # live — fails with `Authentication failed` before Vale reads a file.
+    #
+    # Skipped rather than made to tolerate a missing token: without that clone
+    # Vale has no config, so a "graceful" fallback would report a green check
+    # having linted nothing. Correct on the merits too — Dependabot only edits
+    # manifests and lockfiles, which carry no prose.
+    if: ${{ github.actor != 'dependabot[bot]' }}
     uses: gridwatch/.github/.github/workflows/vale.yml@main
     # Passed explicitly, never left to the reusable's default: drift would change
     # what gets linted with nothing in review showing it.
