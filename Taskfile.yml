@@ -17,6 +17,9 @@ includes:
   js:
     taskfile: ../tooling/taskfiles/js.yml
     flatten: true
+  semgrep:
+    taskfile: ../tooling/taskfiles/semgrep.yml
+    flatten: true
 
 tasks:
   lint:
