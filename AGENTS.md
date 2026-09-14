@@ -83,4 +83,4 @@ rasterizes," in which case say so here.
   from `rsms`'s plain `Inter` (`git-9221beed3`) — two different designs with different metrics in
   one package, so `inter.Bold` did not match `inter.Regular`. Check the `name` table's family and
   version strings agree across every file in a directory.
-- **CI delegates to shared workflows** — the test, lint and Scorecard callers reference `gridwatch/.github/.github/workflows/`. No inline CI logic in this repo.
+- **CI delegates to shared workflows** — the test, lint, Super-Linter, Vale and tag callers reference `gridwatch/.github/.github/workflows/`. No inline CI logic in this repo.
