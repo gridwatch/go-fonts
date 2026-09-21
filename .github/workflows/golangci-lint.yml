@@ -32,7 +32,7 @@ permissions:
 jobs:
   lint:
     name: lint
-    uses: gridwatch/.github/.github/workflows/golangci-lint.yml@e61d59f75dd80634050830b544b793795b823d3c  # v20260918-1
+    uses: gridwatch/.github/.github/workflows/golangci-lint.yml@9a7a83aca763148dc8099875357be62c80691637  # v20260921-1
     secrets:
       REPO_ACCESS_APP_CLIENT_ID: ${{ secrets.REPO_ACCESS_APP_CLIENT_ID }}
       REPO_ACCESS_APP_PRIVATE_KEY: ${{ secrets.REPO_ACCESS_APP_PRIVATE_KEY }}
