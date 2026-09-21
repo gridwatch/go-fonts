@@ -66,4 +66,4 @@ Private modules need `GOPRIVATE=github.com/gridwatch/*` locally as well as in CI
 
 - Diagrams are **Mermaid** only. No ASCII box drawing.
 - Markdown is linted with `markdownlint` at a 320-character line limit — don't hard-wrap prose at 80.
-- `CLAUDE.md` is a thin entry point: a title line and `@AGENTS.md`, nothing else. Conventions belong in `AGENTS.md`.
+- Conventions belong in `AGENTS.md`, and this repository has no `CLAUDE.md`. Claude Code loads a repository's `AGENTS.md` in place of `CLAUDE.md` when it has none of its own, so the pointer-only wrapper that held a title line and `@AGENTS.md` was deleted fleet-wide. Don't add one back.
