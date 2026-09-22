@@ -36,7 +36,7 @@ jobs:
     # having linted nothing. Correct on the merits too — Dependabot only edits
     # manifests and lockfiles, which carry no prose.
     if: ${{ github.actor != 'dependabot[bot]' }}
-    uses: gridwatch/.github/.github/workflows/vale.yml@9a7a83aca763148dc8099875357be62c80691637  # v20260921-1
+    uses: gridwatch/.github/.github/workflows/vale.yml@f3a8bba91edc487df60353f27f79121bac8d4165  # v20260922-1
     # Passed explicitly, never left to the reusable's default: drift would change
     # what gets linted with nothing in review showing it.
     with:
