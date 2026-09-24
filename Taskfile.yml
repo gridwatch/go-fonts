@@ -5,6 +5,10 @@ version: '3'
 silent: true
 
 includes:
+  claude:
+    taskfile: ../tooling/taskfiles/claude.yml
+    flatten: true
+    optional: true
   go:
     taskfile: ../tooling/taskfiles/go.yml
     flatten: true
