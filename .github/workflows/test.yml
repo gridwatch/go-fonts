@@ -32,7 +32,7 @@ permissions:
 jobs:
   test:
     name: test
-    uses: gridwatch/.github/.github/workflows/go-test.yml@a9301862c55997b03a8b787ce1feac2cf3f0db06  # v20260923-3
+    uses: gridwatch/.github/.github/workflows/go-test.yml@2444467310aeede01cd20e67b3baf58d18e33eb5  # v20260924-2
     secrets:
       REPO_ACCESS_APP_CLIENT_ID: ${{ secrets.REPO_ACCESS_APP_CLIENT_ID }}
       REPO_ACCESS_APP_PRIVATE_KEY: ${{ secrets.REPO_ACCESS_APP_PRIVATE_KEY }}
