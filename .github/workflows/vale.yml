@@ -20,6 +20,10 @@ on:
   # A run that fails at workflow load has no jobs and cannot be re-run, so
   # without this the only way to retry after such a failure is a new push.
   workflow_dispatch:
+  # Nightly on main: the one run that saves a cache. Every other run only
+  # restores, so a pull request can never write what main later reads.
+  schedule:
+    - cron: '23 3 * * *'
 
 permissions:
   contents: read
@@ -36,7 +40,7 @@ jobs:
     # having linted nothing. Correct on the merits too — Dependabot only edits
     # manifests and lockfiles, which carry no prose.
     if: ${{ github.actor != 'dependabot[bot]' }}
-    uses: gridwatch/.github/.github/workflows/vale.yml@2444467310aeede01cd20e67b3baf58d18e33eb5  # v20260924-2
+    uses: gridwatch/.github/.github/workflows/vale.yml@00839f1e507cd21bf6694b995e22ec8d81856188  # v20260925-3
     # Passed explicitly, never left to the reusable's default: drift would change
     # what gets linted with nothing in review showing it.
     with:
