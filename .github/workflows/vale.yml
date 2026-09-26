@@ -39,7 +39,14 @@ jobs:
     # Vale has no config, so a "graceful" fallback would report a green check
     # having linted nothing. Correct on the merits too — Dependabot only edits
     # manifests and lockfiles, which carry no prose.
-    if: ${{ github.actor != 'dependabot[bot]' }}
+    #
+    # Fork pull requests and runs inside a fork get no Actions secrets either,
+    # so they would fail the same way; the job runs only in the gridwatch
+    # organization, for pull requests from its own branches.
+    if: >-
+      ${{ github.repository_owner == 'gridwatch'
+      && github.actor != 'dependabot[bot]'
+      && !github.event.pull_request.head.repo.fork }}
     uses: gridwatch/.github/.github/workflows/vale.yml@959e126375cd2612c8413d0b1be33a959f47e43f  # v20260926-2
     # Passed explicitly, never left to the reusable's default: drift would change
     # what gets linted with nothing in review showing it.
