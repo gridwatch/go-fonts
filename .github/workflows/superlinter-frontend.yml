@@ -21,4 +21,4 @@ permissions:
 jobs:
   superlinter:
     name: superlinter
-    uses: gridwatch/.github/.github/workflows/superlinter-frontend.yml@96486f591a56c73a330f7c58983c77f99c34ed39  # v20260927-2
+    uses: gridwatch/.github/.github/workflows/superlinter-frontend.yml@12884e91171336f802bf47c75fe1181646bfcd19  # v20260927-5
