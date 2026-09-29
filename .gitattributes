@@ -37,6 +37,7 @@
 *.7z         binary
 *.parquet    binary
 *.arrow      binary
+*.f16        binary
 *.onnx       binary
 *.bin        binary
 *.so         binary
