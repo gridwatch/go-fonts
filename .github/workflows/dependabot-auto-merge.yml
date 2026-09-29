@@ -1,0 +1,67 @@
+---
+
+# Managed by gridwatch/infrastructure-github.
+# Manual edits will be overwritten on the next `terraform apply`.
+#
+# Action pins live in its `locals.tf`. Never merge a Dependabot pull request
+# against this file; bump the pin there instead.
+#
+# Turns on auto-merge for a Dependabot patch or minor update. GitHub merges it
+# once the repository's `require-checks` ruleset is satisfied, so this job
+# decides only whether the update qualifies, never whether it passed. A major
+# update, or a group holding one, is left for a person.
+
+name: Dependabot Auto-Merge
+
+# `pull_request`, not `pull_request_target`. A `pull_request` run that Dependabot
+# triggers is handed the repository's Dependabot secrets in place of its Actions
+# secrets, and the App's halves are Dependabot secrets
+# (`github_app_dependabot_merge.tf`). `pull_request_target` reads Actions
+# secrets, where they are not set, so the token mint would fail there instead.
+# see: https://docs.github.com/en/code-security/dependabot/troubleshooting-dependabot/troubleshooting-dependabot-on-github-actions
+on:
+  pull_request:
+    branches: [main]
+
+# Keyed on the pull request, which a push cannot reach.
+concurrency:
+  group: dependabot-auto-merge-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions: {}
+
+jobs:
+  auto-merge:
+    name: auto-merge
+    # The pull request's author, not `github.actor`: a person re-running the
+    # job becomes the actor, and the secrets below reach Dependabot runs only.
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository_owner == 'gridwatch'
+    runs-on: ubuntu-26.04
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      # see: https://github.com/dependabot/fetch-metadata/releases/tag/v3.1.0
+      - id: metadata
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98  # v3.1.0
+
+      # Not GITHUB_TOKEN: a merge that token enables starts no workflow on
+      # `main`, so a Go library's tagger would never see the bump.
+      # see: https://github.com/actions/create-github-app-token/releases/tag/v3.2.0
+      - id: app-token
+        if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1  # v3.2.0
+        with:
+          client-id: ${{ secrets.DEPENDABOT_MERGE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.DEPENDABOT_MERGE_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
+          permission-contents: write
+          permission-pull-requests: write
+
+      - name: Enable auto-merge
+        if: steps.app-token.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: gh pr merge --auto --squash "$PR_URL"
