@@ -21,5 +21,18 @@ updates:
       # own fix back for a week is delay with nothing to show for it.
       exclude:
         - "github.com/gridwatch/*"
+    # One pull request per ecosystem rather than one per dependency. Separate
+    # pull requests from the same weekly run conflict with each other as soon
+    # as the first merges, and each needs a rebase before the next can land.
+    # Majors stay out of the group and open their own pull requests: the
+    # grouped one merges itself where auto-merge is on, and one major would
+    # hold every patch back behind a human review.
+    groups:
+      gomod:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
     schedule:
       interval: "weekly"
