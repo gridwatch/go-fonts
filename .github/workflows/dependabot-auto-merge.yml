@@ -40,6 +40,11 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
+    # A step `if` cannot read the secrets context, so the App halves are
+    # reduced to one boolean here. Until infrastructure-github publishes them,
+    # the job passes without turning anything on, rather than failing.
+    env:
+      MERGE_APP_CONFIGURED: ${{ secrets.DEPENDABOT_MERGE_APP_CLIENT_ID != '' && secrets.DEPENDABOT_MERGE_APP_PRIVATE_KEY != '' }}
     steps:
       # see: https://github.com/dependabot/fetch-metadata/releases/tag/v3.1.0
       - id: metadata
@@ -49,7 +54,7 @@ jobs:
       # `main`, so a Go library's tagger would never see the bump.
       # see: https://github.com/actions/create-github-app-token/releases/tag/v3.2.0
       - id: app-token
-        if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        if: env.MERGE_APP_CONFIGURED == 'true' && (steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor')
         uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1  # v3.2.0
         with:
           client-id: ${{ secrets.DEPENDABOT_MERGE_APP_CLIENT_ID }}
